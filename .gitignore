@@ -1,0 +1,12 @@
+backend/node_modules/
+backend/dist/
+backend/.env
+.env
+.DS_Store
+.env.*
+!.env.example
+backend/.env.*
+!backend/.env.example
+
+# Local database dumps and generated SQL
+*.sql

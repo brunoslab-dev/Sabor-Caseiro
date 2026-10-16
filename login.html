@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login administrativo | Sabor Caseiro</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <main class="admin-main">
+    <section class="admin-login">
+      <div class="admin-heading">
+        <p class="admin-eyebrow">Sabor Caseiro</p>
+        <h1>Área administrativa</h1>
+        <p>Entre com suas credenciais para acessar as reservas.</p>
+      </div>
+
+      <form id="login-form">
+        <div>
+          <label for="email">E-mail</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="password">Senha</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button type="submit">Entrar</button>
+
+        <p id="login-error" role="alert" hidden></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

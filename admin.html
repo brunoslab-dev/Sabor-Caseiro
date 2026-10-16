@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Sabor Caseiro</title>
+  <meta name="description" content="Sabor Caseiro reservation management dashboard.">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <a class="admin-brand" href="index.html" aria-label="Sabor Caseiro home">
+        Sabor <span>Caseiro</span>
+      </a>
+
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a class="admin-back" href="index.html">
+          Back to website
+        </a>
+
+        <button
+          class="admin-logout"
+          id="logout-button"
+          type="button"
+        >
+          Log out
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="admin-main">
+    <section aria-labelledby="dashboard-title">
+      <div class="admin-heading">
+        <p class="admin-eyebrow">Administration</p>
+
+        <h1 id="dashboard-title">Reservations</h1>
+
+        <p class="admin-description">
+          Manage reservation requests, confirm bookings and remove cancelled records.
+        </p>
+      </div>
+
+      <div id="dashboard-status" role="status" aria-live="polite">
+        Loading reservations...
+      </div>
+
+      <div id="reservations-list"></div>
+    </section>
+
+    <section class="recommendation-admin" aria-labelledby="recommendations-title">
+      <div class="admin-heading">
+        <p class="admin-eyebrow">Vendas adicionais</p>
+        <h2 id="recommendations-title">Sugestões antes do checkout</h2>
+        <p class="admin-description">Escolhe os complementos que aparecem no carrinho. O cliente pode sempre recusar.</p>
+      </div>
+      <div id="recommendation-admin-status" role="status" aria-live="polite"></div>
+      <form id="recommendation-settings-form" class="recommendation-settings">
+        <label class="recommendation-toggle"><input type="checkbox" id="recommendations-enabled" checked> Ativar sugestões de complementos</label>
+        <p class="admin-description">Seleciona os produtos que queres promover. Os preços apresentados vêm do menu do site.</p>
+        <div id="recommendation-options" class="recommendation-options"></div>
+        <button class="admin-action" type="submit">Guardar sugestões</button>
+        <p class="admin-description"><strong>Nota:</strong> nesta entrega, as preferências são guardadas no armazenamento local deste navegador. Para sincronizar entre dispositivos e comerciantes, falta ligar estas definições à API e à base de dados.</p>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/admin.js"></script>
+  <script src="js/recommendations-admin.js"></script>
+</body>
+</html>

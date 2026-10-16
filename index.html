@@ -1,0 +1,921 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <!-- Document Metadata -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO & Social Sharing -->
+  <meta name="description" content="Sabor Caseiro — a warm, contemporary restaurant experience in Lisbon.">
+  <meta name="theme-color" content="#17130f">
+  <meta name="author" content="Sabor Caseiro — Front-end portfolio concept">
+  <meta name="robots" content="index,follow">
+
+  <meta property="og:title" content="Sabor Caseiro | Restaurant">
+  <meta property="og:description" content="A contemporary restaurant website crafted around food, atmosphere and hospitality.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sabor Caseiro">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sabor Caseiro | Restaurant">
+  <meta name="twitter:description" content="A contemporary restaurant website crafted around food, atmosphere and hospitality.">
+
+  <title>Sabor Caseiro | Restaurant</title>
+
+  <!-- Performance -->
+  <link rel="preload" as="image" href="images/gallery/the-atmosphere.webp">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon/favicon.png">
+  <link rel="apple-touch-icon" href="favicon/favicon.png">
+
+  <!-- Fonts & External Libraries -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+  <!-- Accessibility -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- Header & Navigation -->
+  <header class="site-header" id="top">
+
+    <nav class="navbar  navbar-dark" aria-label="Main navigation">
+
+      <div class="container">
+
+        <a
+          class="navbar-brand brand"
+          href="#top"
+          aria-label="Sabor Caseiro home"
+        >
+          Sabor <span>Caseiro</span>
+        </a>
+
+        
+
+        <div class="navbar-collapse" id="mainNavigation">
+
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#story">Our Story</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#menu">Menu</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#gallery">Gallery</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+
+            <li class="nav-item ms-lg-2">
+              <a class="btn btn-primary btn-sm" href="#contact">
+                Book a Table
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section
+      class="hero"
+      id="home"
+      aria-labelledby="hero-title"
+    >
+
+      <div class="hero__overlay"></div>
+
+      <div class="container hero__content" data-reveal>
+
+        <p class="eyebrow">Lisbon · Est. 2024</p>
+
+        <h1 id="hero-title">
+          Food made with care.<br>
+          <em>Moments made to stay.</em>
+        </h1>
+
+        <p class="hero__lead">
+          A warm, contemporary dining experience built around honest ingredients,
+          familiar recipes and a little everyday elegance.
+        </p>
+
+        <div class="hero__actions">
+
+          <a class="btn btn-primary btn-lg" href="#menu">
+            Explore the menu
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+
+          <a class="btn btn-ghost btn-lg" href="#gallery">
+            See the space
+          </a>
+
+        </div>
+
+        <div class="hero__meta" aria-label="Restaurant highlights">
+
+          <span>
+            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+            Fresh ingredients
+          </span>
+
+          <span>
+            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+            Made with care
+          </span>
+
+          <span>
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            Lisbon, Portugal
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Restaurant Story -->
+    <section
+      class="section section--light"
+      id="story"
+      aria-labelledby="story-title"
+    >
+
+      <div class="container">
+
+        <div class="split-layout">
+
+          <div class="split-layout__content" data-reveal>
+
+            <p class="eyebrow eyebrow--dark">Our story</p>
+
+            <h2 id="story-title">
+              A table that feels like home.
+            </h2>
+
+            <p class="lead-copy">
+              At Sabor Caseiro, we believe the best meals are never only about
+              what is on the plate. They are about the people around the table,
+              the smell from the kitchen and the feeling that you can stay for
+              one more conversation.
+            </p>
+
+            <p>
+              Our menu brings together Portuguese comfort food and Mediterranean
+              influences, using seasonal produce and simple techniques to let
+              every ingredient speak for itself.
+            </p>
+
+            <a class="text-link" href="#contact">
+              Come share the table
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+
+          </div>
+
+          <figure
+            class="image-frame image-frame--portrait"
+            data-reveal
+          >
+
+            <img
+              src="images/gallery/the-dining-room.webp"
+              alt="Warm interior of Sabor Caseiro"
+              loading="lazy"
+              decoding="async"
+            >
+
+          </figure>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Menu -->
+    <section
+      class="section section--cream"
+      id="menu"
+      aria-labelledby="menu-title"
+    >
+
+      <div class="container">
+
+        <div class="section-heading" data-reveal>
+
+          <div>
+
+            <p class="eyebrow eyebrow--dark">
+              From our kitchen
+            </p>
+
+            <h2 id="menu-title">
+              The menu
+            </h2>
+
+          </div>
+
+          <p>
+            Seasonal ingredients, generous portions and recipes designed for
+            slow lunches and long dinners.
+          </p>
+
+        </div>
+
+        <!-- Menu Filters -->
+        <div
+          class="menu-filters"
+          id="menuFilters"
+          role="group"
+          aria-label="Filter menu by category"
+        >
+
+          <button
+            class="btn btn-filter is-active"
+            type="button"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+
+          <button
+            class="btn btn-filter"
+            type="button"
+            data-filter="main"
+            aria-pressed="false"
+          >
+            Mains
+          </button>
+
+          <button
+            class="btn btn-filter"
+            type="button"
+            data-filter="drink"
+            aria-pressed="false"
+          >
+            Drinks
+          </button>
+
+          <button
+            class="btn btn-filter"
+            type="button"
+            data-filter="dessert"
+            aria-pressed="false"
+          >
+            Desserts
+          </button>
+
+        </div>
+
+        <!-- Menu Items Rendered by JavaScript -->
+        <div
+          class="row g-4"
+          id="menuGrid"
+          aria-live="polite"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <!-- Restaurant Experience -->
+    <section
+      class="section section--dark"
+      id="experience"
+      aria-labelledby="experience-title"
+    >
+
+      <div class="container">
+
+        <div
+          class="section-heading section-heading--light"
+          data-reveal
+        >
+
+          <div>
+
+            <p class="eyebrow">
+              The experience
+            </p>
+
+            <h2 id="experience-title">
+              Good food needs a good setting.
+            </h2>
+
+          </div>
+
+          <p>
+            Soft light, warm textures and a relaxed room designed to make every
+            visit feel unhurried.
+          </p>
+
+        </div>
+
+        <div class="experience-grid">
+
+          <article class="feature-card" data-reveal>
+
+            <span class="feature-card__icon">
+              <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+            </span>
+
+            <h3>Fresh by nature</h3>
+
+            <p>
+              We keep the ingredients simple, seasonal and carefully selected.
+            </p>
+
+          </article>
+
+          <article class="feature-card" data-reveal>
+
+            <span class="feature-card__icon">
+              <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+            </span>
+
+            <h3>Made to share</h3>
+
+            <p>
+              Generous dishes, relaxed service and a menu that brings people
+              together.
+            </p>
+
+          </article>
+
+          <article class="feature-card" data-reveal>
+
+            <span class="feature-card__icon">
+              <i class="fa-solid fa-wine-glass" aria-hidden="true"></i>
+            </span>
+
+            <h3>Stay a little longer</h3>
+
+            <p>
+              Come for dinner. Stay for dessert, coffee and another conversation.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Gallery -->
+    <section
+      class="section section--light"
+      id="gallery"
+      aria-labelledby="gallery-title"
+    >
+
+      <div class="container">
+
+        <div class="section-heading" data-reveal>
+
+          <div>
+
+            <p class="eyebrow eyebrow--dark">
+              Inside Sabor Caseiro
+            </p>
+
+            <h2 id="gallery-title">
+              A taste of the room
+            </h2>
+
+          </div>
+
+          <p>
+            Tap an image to explore the restaurant atmosphere.
+          </p>
+
+        </div>
+
+        <!-- Gallery Items Rendered by JavaScript -->
+        <div
+          class="gallery-grid"
+          id="galleryGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <!-- Reservations & Contact -->
+    <section
+      class="section section--cream"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
+
+      <div class="container">
+
+        <div class="contact-layout">
+
+          <div data-reveal>
+
+            <p class="eyebrow eyebrow--dark">
+              Reservations & contact
+            </p>
+
+            <h2 id="contact-title">
+              Let’s make your next meal special.
+            </h2>
+
+            <p class="lead-copy">
+              For reservations, celebrations or questions, send us a message.
+              We will get back to you as soon as possible.
+            </p>
+
+            <div class="contact-details">
+
+              <a href="tel:+351210000000">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                +351 210 000 000
+              </a>
+
+              <a href="mailto:hello@saborcaseiro.pt">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                hello@saborcaseiro.pt
+              </a>
+
+              <span>
+                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                Avenida da Liberdade, Lisbon
+              </span>
+
+            </div>
+
+          </div>
+
+          <!-- Reservation Form -->
+          <form
+            class="contact-form"
+            id="contactForm"
+            novalidate
+            data-reveal
+          >
+
+            <div class="form-row">
+
+              <div class="form-field">
+
+                <label for="name">
+                  Name
+                </label>
+
+                <input
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  type="text"
+                  autocomplete="name"
+                  required
+                >
+
+              </div>
+
+              <div class="form-field">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  type="email"
+                  autocomplete="email"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+            <div class="form-row">
+
+              <div class="form-field">
+
+                <label for="date">
+                  Preferred date
+                </label>
+
+                <input
+                  id="date"
+                  name="date"
+                  class="form-control"
+                  type="date"
+                  required
+                >
+
+              </div>
+
+              <div class="form-field">
+
+                <label for="time">
+                  Preferred time
+                </label>
+
+                <input
+                  id="time"
+                  name="time"
+                  class="form-control"
+                  type="time"
+                  min="12:00"
+                  max="22:00"
+                >
+
+              </div>
+
+            </div>
+
+            <div class="form-field">
+
+              <label for="guests">
+                Guests
+              </label>
+
+              <select
+                id="guests"
+                name="guests"
+                class="form-select"
+              >
+                <option value="2">2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+                <option value="5">5 guests</option>
+                <option value="6">6+ guests</option>
+              </select>
+
+            </div>
+
+            <div class="form-field">
+
+              <label for="message">
+                Message
+              </label>
+
+              <textarea
+                id="message"
+                name="message"
+                class="form-control"
+                rows="5"
+                placeholder="Tell us anything we should know..."
+              ></textarea>
+
+            </div>
+
+            <button
+              class="btn btn-primary btn-lg w-100"
+              type="submit"
+            >
+              Send request
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </button>
+
+            <p
+              class="form-status"
+              id="formStatus"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Location -->
+    <section
+      class="map-section"
+      aria-label="Restaurant location"
+    >
+
+      <iframe
+        title="Sabor Caseiro location on Google Maps"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.8809810438647!2d-9.148477224091552!3d38.72054145712012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd193382100b6609%3A0xc8fdf6ca0edb5fc7!2sAv.%20da%20Liberdade%2C%20Lisboa!5e0!3m2!1spt-PT!2spt!4v1780172286021!5m2!1spt-PT!2spt"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+
+    <div class="container site-footer__inner">
+
+      <div>
+
+        <a class="brand" href="#top">
+          Sabor <span>Caseiro</span>
+        </a>
+
+        <p>
+          A warm table in the heart of Lisbon.
+        </p>
+
+      </div>
+
+      <div
+        class="footer-actions"
+        aria-label="Contact options"
+      >
+
+        <a href="mailto:hello@saborcaseiro.pt" aria-label="Email Sabor Caseiro">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+
+        <a href="tel:+351210000000" aria-label="Call Sabor Caseiro">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+        </a>
+
+        <a href="#contact" aria-label="Open reservation form">
+          <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+        </a>
+
+      </div>
+
+      <p class="footer-note">
+        © <span id="currentYear"></span>
+        Sabor Caseiro. Crafted for a portfolio.
+      </p>
+
+    </div>
+
+  </footer>
+
+  <!-- Back to Top -->
+  <button
+    class="back-to-top"
+    id="backToTop"
+    type="button"
+    aria-label="Back to top"
+  >
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Gallery Modal -->
+  <div
+    class="modal fade"
+    id="imageModal"
+    tabindex="-1"
+    aria-labelledby="imageModalTitle"
+    aria-hidden="true"
+  >
+
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+
+      <div class="modal-content gallery-modal">
+
+        <div class="modal-header">
+
+          <h2 class="modal-title" id="imageModalTitle">
+            Gallery image
+          </h2>
+
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+
+        </div>
+
+        <div class="modal-body">
+
+          <img
+            id="modalImage"
+            src=""
+            alt=""
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+
+    <!-- SHOPPING CART & UPSELL -->
+
+<button
+  id="cartFab"
+  class="cart-fab"
+  type="button"
+  aria-label="Open shopping cart"
+>
+  <span class="cart-fab__icon" aria-hidden="true">🛒</span>
+  <span class="cart-fab__label">Cart</span>
+  <span id="cartCount" class="cart-fab__count">0</span>
+  <span class="cart-fab__separator" aria-hidden="true">·</span>
+  <span id="cartTotal" class="cart-fab__total">€0.00</span>
+</button>
+
+<div
+  id="orderOverlay"
+  class="order-overlay"
+  hidden
+>
+  <section
+    class="order-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="orderTitle"
+    aria-describedby="orderDescription"
+  >
+    <!-- Cart Header -->
+    <header class="order-header">
+      <div class="order-header__content">
+        <p class="eyebrow">YOUR ORDER</p>
+        <h2 id="orderTitle">Your Cart</h2>
+        <p id="orderDescription" class="order-description">
+          Review your items before checkout.
+        </p>
+      </div>
+
+      <button
+        id="closeOrder"
+        class="order-close"
+        type="button"
+        aria-label="Close shopping cart"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </header>
+
+    <!-- Cart Items -->
+    <div
+      id="cartLines"
+      class="cart-lines"
+      aria-live="polite"
+      aria-relevant="additions removals text"
+    ></div>
+
+    <!-- Cart Subtotal -->
+    <div class="order-total">
+      <span>Subtotal</span>
+      <strong id="cartSubtotal">€0.00</strong>
+    </div>
+
+    <!-- Optional Product Recommendations -->
+    <section
+      id="upsellSection"
+      class="upsell-section"
+      aria-labelledby="upsellTitle"
+    >
+      <header class="upsell-header">
+        <p class="eyebrow">A LITTLE SOMETHING EXTRA</p>
+        <h3 id="upsellTitle">Complete Your Meal</h3>
+        <p class="upsell-copy">
+          Add something extra, or continue without it.
+        </p>
+      </header>
+
+      <div
+        id="upsellCards"
+        class="upsell-cards"
+      ></div>
+
+      <button
+        id="skipUpsell"
+        class="btn btn-outline-dark w-100"
+        type="button"
+      >
+        Continue Without Extras
+      </button>
+    </section>
+
+    <!-- Checkout Form -->
+    <form
+      id="checkoutForm"
+      class="checkout-form"
+      hidden
+    >
+      <h3>Checkout Details</h3>
+
+      <div class="form-group">
+        <label for="orderCustomer">Full Name</label>
+        <input
+          id="orderCustomer"
+          name="name"
+          type="text"
+          required
+          minlength="2"
+          autocomplete="name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="orderPhone">Phone Number</label>
+        <input
+          id="orderPhone"
+          name="phone"
+          type="tel"
+          required
+          autocomplete="tel"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="orderFulfillment">Order Method</label>
+        <select
+          id="orderFulfillment"
+          name="fulfillment"
+          required
+        >
+          <option value="pickup">Pickup at Restaurant</option>
+          <option value="delivery">
+            Delivery (subject to restaurant confirmation)
+          </option>
+        </select>
+      </div>
+
+     <p class="checkout-note">
+  Orders are submitted to the restaurant. Payment is due at pickup.
+  Delivery is currently unavailable.
+</p>
+
+      <button
+        class="btn btn-primary w-100"
+        type="submit"
+      >
+        Review Order
+      </button>
+    </form>
+
+    <!-- Order Status and Feedback -->
+    <div
+      id="orderStatus"
+      class="order-status"
+      role="status"
+      aria-live="polite"
+    ></div>
+  </section>
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>

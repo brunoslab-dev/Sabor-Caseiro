@@ -1,0 +1,267 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum ProductType {
+  STANDARD
+  BUILD_YOUR_OWN
+  RANDOMIZABLE
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  READY
+  OUT_FOR_DELIVERY
+  COMPLETED
+  CANCELLED
+  REJECTED
+}
+
+enum FulfillmentType {
+  PICKUP
+  DELIVERY
+  DINE_IN
+}
+
+enum PaymentMethod {
+  CASH
+  CARD_ON_DELIVERY
+  ONLINE
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model Restaurant {
+  id                 String     @id @default(cuid())
+  name               String
+  slug               String     @unique
+  isOpen             Boolean    @default(true)
+  currency           String     @default("EUR")
+  phone              String?
+  email              String?
+  address            String?
+  acceptsPickup      Boolean    @default(true)
+  acceptsDelivery    Boolean    @default(false)
+  minimumOrderCents  Int        @default(0)
+  deliveryFeeCents   Int        @default(0)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  admins             Admin[]
+  categories         Category[]
+  products            Product[]
+  modifierGroups      ModifierGroup[]
+  orders              Order[]
+
+  @@map("restaurants")
+}
+
+model Admin {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  passwordHash String
+  restaurantId String?
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id], onDelete: SetNull)
+  createdAt    DateTime   @default(now())
+
+  @@index([restaurantId])
+  @@map("admins")
+}
+
+model Category {
+  id           String     @id @default(cuid())
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  name         String
+  slug         String
+  description  String?
+  imageUrl     String?
+  sortOrder    Int        @default(0)
+  isActive     Boolean    @default(true)
+  products     Product[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([restaurantId, slug])
+  @@index([restaurantId, isActive, sortOrder])
+  @@map("categories")
+}
+
+model Product {
+  id                    String          @id @default(cuid())
+  restaurantId          String
+  restaurant            Restaurant      @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  categoryId            String?
+  category              Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  name                  String
+  slug                  String
+  description           String?
+  imageUrl              String?
+  type                  ProductType     @default(STANDARD)
+  priceCents            Int
+  isAvailable           Boolean         @default(true)
+  isFeatured            Boolean         @default(false)
+  isActive              Boolean         @default(true)
+  allowCustomerNotes    Boolean         @default(true)
+  preparationTimeMinutes Int?
+  allergens             String[]        @default([])
+  dietaryLabels         String[]        @default([])
+  sortOrder             Int             @default(0)
+  modifierGroups        ProductModifierGroup[]
+  recommendationSources ProductRecommendation[] @relation("RecommendationTarget")
+  recommendations       ProductRecommendation[] @relation("RecommendationSource")
+  orderItems            OrderItem[]
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  @@unique([restaurantId, slug])
+  @@index([restaurantId, isActive, isAvailable, sortOrder])
+  @@index([categoryId])
+  @@map("products")
+}
+
+/// Reusable option groups such as protein, side dishes, sauces and extras.
+model ModifierGroup {
+  id             String     @id @default(cuid())
+  restaurantId   String
+  restaurant     Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  name           String
+  description    String?
+  minSelections  Int        @default(0)
+  maxSelections  Int        @default(1)
+  isRequired     Boolean    @default(false)
+  isActive       Boolean    @default(true)
+  sortOrder      Int        @default(0)
+  options        ModifierOption[]
+  products       ProductModifierGroup[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([restaurantId, isActive, sortOrder])
+  @@map("modifier_groups")
+}
+
+model ModifierOption {
+  id                String       @id @default(cuid())
+  groupId           String
+  group             ModifierGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  name              String
+  description       String?
+  priceDeltaCents   Int          @default(0)
+  isAvailable       Boolean      @default(true)
+  isDefault         Boolean      @default(false)
+  sortOrder         Int          @default(0)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@index([groupId, isAvailable, sortOrder])
+  @@map("modifier_options")
+}
+
+model ProductModifierGroup {
+  productId String
+  groupId   String
+  product   Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
+  group     ModifierGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  sortOrder Int           @default(0)
+
+  @@id([productId, groupId])
+  @@map("product_modifier_groups")
+}
+
+/// Optional cross-sell/upsell products shown before checkout.
+model ProductRecommendation {
+  sourceProductId String
+  targetProductId String
+  source          Product @relation("RecommendationSource", fields: [sourceProductId], references: [id], onDelete: Cascade)
+  target          Product @relation("RecommendationTarget", fields: [targetProductId], references: [id], onDelete: Cascade)
+  priority        Int     @default(0)
+  createdAt       DateTime @default(now())
+
+  @@id([sourceProductId, targetProductId])
+  @@index([sourceProductId, priority])
+  @@map("product_recommendations")
+}
+
+model Order {
+  id                   String          @id @default(cuid())
+  orderNumber          Int             @unique @default(autoincrement())
+  restaurantId         String
+  restaurant           Restaurant      @relation(fields: [restaurantId], references: [id], onDelete: Restrict)
+  customerName         String
+  customerEmail        String?
+  customerPhone        String
+  deliveryAddress      String?
+  customerNotes        String?
+  status               OrderStatus     @default(PENDING)
+  fulfillmentType      FulfillmentType @default(PICKUP)
+  paymentMethod        PaymentMethod   @default(CASH)
+  paymentStatus        PaymentStatus   @default(PENDING)
+  subtotalCents        Int
+  deliveryFeeCents     Int             @default(0)
+  discountCents        Int             @default(0)
+  totalCents           Int
+  requestedFor         DateTime?
+  acceptedAt           DateTime?
+  completedAt          DateTime?
+  items                OrderItem[]
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  @@index([restaurantId, status, createdAt])
+  @@index([customerPhone, createdAt])
+  @@map("orders")
+}
+
+/// Snapshot names and prices so past receipts do not change when the menu changes.
+model OrderItem {
+  id               String   @id @default(cuid())
+  orderId          String
+  order            Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId        String?
+  product          Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productName      String
+  unitPriceCents   Int
+  quantity         Int
+  lineTotalCents   Int
+  notes            String?
+  selectedOptions  Json     @default("[]")
+  createdAt        DateTime @default(now())
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+model Reservation {
+  id        String            @id @default(cuid())
+  name      String
+  email     String
+  date      DateTime          @db.Date
+  time      String?
+  guests    Int
+  message   String?
+  status    ReservationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@index([date, status])
+  @@index([email])
+  @@map("reservations")
+}

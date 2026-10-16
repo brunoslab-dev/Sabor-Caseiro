@@ -1,0 +1,294 @@
+:root {
+  --admin-bg: #f6f3ee;
+  --admin-surface: #ffffff;
+  --admin-text: #27231f;
+  --admin-muted: #746e67;
+  --admin-border: #e5dfd7;
+  --admin-accent: #8f5b34;
+  --admin-accent-dark: #704525;
+  --admin-success: #2f7d4a;
+  --admin-warning: #a36a18;
+  --admin-danger: #b44949;
+  --admin-shadow: 0 10px 30px rgba(39, 35, 31, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--admin-text);
+  color: white;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.admin-header {
+  background: var(--admin-surface);
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-header-inner {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-brand {
+  color: var(--admin-text);
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.admin-brand span {
+  color: var(--admin-accent);
+}
+
+.admin-back {
+  color: var(--admin-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.admin-back:hover {
+  color: var(--admin-accent);
+}
+
+.admin-main {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3.5rem 0 5rem;
+}
+
+.admin-heading {
+  margin-bottom: 2rem;
+}
+
+.admin-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--admin-accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.admin-heading h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.admin-description {
+  max-width: 650px;
+  margin: 0.75rem 0 0;
+  color: var(--admin-muted);
+  line-height: 1.6;
+}
+
+#dashboard-status {
+  margin-bottom: 1.5rem;
+  color: var(--admin-muted);
+  font-size: 0.95rem;
+}
+
+#reservations-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.reservation-card {
+  padding: 1.5rem;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 1rem;
+  box-shadow: var(--admin-shadow);
+}
+
+.reservation-card h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.25rem;
+}
+
+.reservation-card p {
+  margin: 0.55rem 0;
+  color: var(--admin-muted);
+  line-height: 1.5;
+}
+
+.reservation-card strong {
+  color: var(--admin-text);
+}
+
+.reservation-status {
+  display: inline-flex;
+  margin: 0.75rem 0 0.5rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.status-pending {
+  background: #fff3d6;
+  color: var(--admin-warning);
+}
+
+.status-confirmed {
+  background: #e1f3e7;
+  color: var(--admin-success);
+}
+
+.status-cancelled {
+  background: #f8e1e1;
+  color: var(--admin-danger);
+}
+
+.reservation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--admin-border);
+}
+
+.reservation-actions button {
+  min-height: 42px;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 0.55rem;
+  background: white;
+  color: var(--admin-text);
+  font-weight: 700;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.reservation-actions button:hover {
+  transform: translateY(-1px);
+  border-color: var(--admin-accent);
+}
+
+.reservation-actions button[data-action="confirm"] {
+  border-color: var(--admin-success);
+  color: var(--admin-success);
+}
+
+.reservation-actions button[data-action="confirm"]:hover {
+  background: #e1f3e7;
+}
+
+.reservation-actions button[data-action="cancel"] {
+  border-color: var(--admin-warning);
+  color: var(--admin-warning);
+}
+
+.reservation-actions button[data-action="cancel"]:hover {
+  background: #fff3d6;
+}
+
+.reservation-actions button[data-action="delete"] {
+  border-color: var(--admin-danger);
+  color: var(--admin-danger);
+}
+
+.reservation-actions button[data-action="delete"]:hover {
+  background: #f8e1e1;
+}
+
+.reservation-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(143, 91, 52, 0.35);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .admin-header-inner {
+    min-height: 68px;
+  }
+
+  .admin-main {
+    padding-top: 2.5rem;
+  }
+
+  #reservations-list {
+    grid-template-columns: 1fr;
+  }
+
+  .reservation-actions {
+    flex-direction: column;
+  }
+
+  .reservation-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reservation-actions button {
+    transition: none;
+  }
+}
+
+
+.recommendation-admin { margin-top: 4rem; padding: 2rem; background: var(--admin-surface); border: 1px solid var(--admin-border); border-radius: 1rem; box-shadow: var(--admin-shadow); }
+.recommendation-settings { display: grid; gap: 1rem; }
+.recommendation-toggle { display: flex; align-items: center; gap: .65rem; font-weight: 750; }
+.recommendation-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .7rem; }
+.recommendation-option { display: flex; align-items: center; gap: .7rem; padding: .9rem; border: 1px solid var(--admin-border); border-radius: .7rem; cursor: pointer; }
+.recommendation-option span { flex: 1; }
+.recommendation-option strong { white-space: nowrap; }
+.admin-action { justify-self: start; border: 0; border-radius: .6rem; padding: .8rem 1.2rem; background: var(--admin-accent); color: white; font-weight: 750; }
+.recommendation-status { margin-bottom: 1rem; }
+.recommendation-status.is-success { color: var(--admin-success); }
+.recommendation-status.is-error { color: var(--admin-danger); }
