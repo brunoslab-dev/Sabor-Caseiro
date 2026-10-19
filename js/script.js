@@ -352,6 +352,23 @@ function createMenuCard(item) {
   image.loading = "lazy";
   image.decoding = "async";
 
+  const openDishDetails = () => {
+    window.location.href =
+      `dish.html?name=${encodeURIComponent(item.name)}`;
+  };
+
+  image.style.cursor = "pointer";
+  image.setAttribute("role", "link");
+  image.setAttribute("tabindex", "0");
+  image.setAttribute("aria-label", `View details for ${item.name}`);
+  image.addEventListener("click", openDishDetails);
+  image.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openDishDetails();
+    }
+  });
+
   const body = document.createElement("div");
   body.className = "menu-card__body";
 
@@ -532,13 +549,19 @@ function getCustomizationKey(customizations = []) {
 
 /* ADD TO CART */
 
-function addToCart(item, customizations = [], extraCents = 0) {
+function addToCart(item, customizations = null, extraCents = 0) {
   if (!item || !item.name) return;
 
   const basePrice = euroToCents(item.price);
   const options = Array.isArray(customizations)
     ? customizations
-    : [];
+    : Array.isArray(item.customizations)
+      ? item.customizations
+      : [];
+  const requestedQuantity = Math.max(
+    1,
+    Math.floor(Number(item.quantity) || 1)
+  );
 
   const priceCents = basePrice + Math.max(0, Number(extraCents) || 0);
   const key = getCustomizationKey(options);
@@ -550,12 +573,12 @@ function addToCart(item, customizations = [], extraCents = 0) {
   );
 
   if (existing) {
-    existing.quantity += 1;
+    existing.quantity += requestedQuantity;
   } else {
     cart.push({
       name: item.name,
       priceCents,
-      quantity: 1,
+      quantity: requestedQuantity,
       image: item.image,
       alt: item.alt,
       customizations: options
@@ -922,12 +945,13 @@ function setupOrdering() {
   });
 
   
-$("#checkoutForm")?.addEventListener("submit", async event => {
+
+
+$("#checkoutForm")?.addEventListener("submit", event => {
   event.preventDefault();
 
   const status = $("#orderStatus");
   const form = event.currentTarget;
-  const submitButton = form.querySelector('button[type="submit"]');
 
   if (!cart.length) {
     status.textContent = "Your cart is empty. Add a dish before checking out.";
@@ -935,111 +959,37 @@ $("#checkoutForm")?.addEventListener("submit", async event => {
   }
 
   const formData = new FormData(form);
-  const fulfillment = formData.get("fulfillment");
+  const name = String(formData.get("name") || "").trim();
+  const phone = String(formData.get("phone") || "").trim();
 
-  if (fulfillment !== "pickup") {
-    status.textContent =
-      "Delivery is currently unavailable. Please select pickup.";
+  if (!name || !phone) {
+    status.textContent = "Please enter your name and phone number.";
     return;
   }
 
-  const originalButtonText = submitButton?.textContent;
+  status.innerHTML = `
+    <div class="pending-order-message">
+      <div class="pending-order-icon">⏳</div>
+      <h3>Pedido pendente de confirmação</h3>
+      <p>Obrigado, ${name.replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char])}!</p>
+      <p>O teu pedido aguarda a aceitação do restaurante.</p>
+      <p><strong>Recolha:</strong> Av. da Liberdade, Lisboa</p>
+      <p><strong>Horário:</strong> A confirmar</p>
+      <div class="pending-order-status">
+        <span class="pending-order-spinner"></span>
+        À espera de confirmação
+      </div>
+      <small>Demonstração de portefólio — nenhum pedido real foi enviado.</small>
+    </div>
+  `;
 
-  if (submitButton) {
-    submitButton.disabled = true;
-    submitButton.textContent = "Submitting order...";
-  }
-
-  status.textContent = "Submitting your order. Please wait...";
-
-  try {
-    const menu = await getApiMenu();
-    const products = menu.categories.flatMap(category => category.products);
-
-    if (!menu.restaurant?.isOpen || !menu.restaurant?.acceptsPickup) {
-      throw new Error("The restaurant is not currently accepting pickup orders.");
-    }
-
-    const items = cart.map(line => {
-      const product = products.find(
-        product => product.name === line.name
-      );
-
-      if (!product) {
-        throw new Error(`Could not find "${line.name}" in the restaurant menu.`);
-      }
-
-      const selectedNames = (line.customizations || []).map(option =>
-        normalizeOptionName(typeof option === "string" ? option : option.name)
-      );
-
-      const optionIds = [];
-
-      for (const selectedName of selectedNames) {
-        const option = product.modifierGroups
-          .flatMap(group => group.options)
-          .find(candidate =>
-            normalizeOptionName(candidate.name) === selectedName
-          );
-
-        if (!option) {
-          throw new Error(
-            `Could not match an option for "${line.name}". Please remove it and add it again.`
-          );
-        }
-
-        optionIds.push(option.id);
-      }
-
-      return {
-        productId: product.id,
-        quantity: line.quantity,
-        optionIds
-      };
-    });
-
-    const response = await fetch(`${API_BASE_URL}/orders`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: String(formData.get("name") || "").trim(),
-        phone: String(formData.get("phone") || "").trim(),
-        fulfillment: "pickup",
-        notes: "",
-        items
-      })
-    });
-
-    const result = await response.json().catch(() => ({}));
-
-    if (!response.ok) {
-      throw new Error(
-        result.message || "The order could not be submitted. Please try again."
-      );
-    }
-
-    status.textContent =
-      `Order #${result.orderNumber} received successfully. ` +
-      `Total: ${formatMoney(result.totalCents)}. ` +
-      "Payment is pending; please pay at pickup.";
-
-    cart = [];
-    saveCart();
-    renderCart();
-    form.reset();
-
-  } catch (error) {
-    console.error("Order submission failed:", error);
-    status.textContent =
-      error.message || "An unexpected error occurred. Please try again.";
-  } finally {
-    if (submitButton) {
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText || "Place Order";
-    }
-  }
+  status.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 }
 

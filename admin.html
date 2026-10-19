@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard — Sabor Caseiro</title>
+  <link rel="icon" type="image/png" href="favicon/favicon.png">
   <meta name="description" content="Sabor Caseiro reservation management dashboard.">
   <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -54,17 +55,18 @@
 
     <section class="recommendation-admin" aria-labelledby="recommendations-title">
       <div class="admin-heading">
-        <p class="admin-eyebrow">Vendas adicionais</p>
-        <h2 id="recommendations-title">Sugestões antes do checkout</h2>
-        <p class="admin-description">Escolhe os complementos que aparecem no carrinho. O cliente pode sempre recusar.</p>
+        <p class="admin-eyebrow">Upselling</p>
+        <h2 id="recommendations-title">Checkout Recommendations</h2>
+        <p class="admin-description">Choose which add-ons appear in the cart. Customers can always decline.</p>
       </div>
       <div id="recommendation-admin-status" role="status" aria-live="polite"></div>
       <form id="recommendation-settings-form" class="recommendation-settings">
-        <label class="recommendation-toggle"><input type="checkbox" id="recommendations-enabled" checked> Ativar sugestões de complementos</label>
-        <p class="admin-description">Seleciona os produtos que queres promover. Os preços apresentados vêm do menu do site.</p>
+        <label class="recommendation-toggle"><input type="checkbox" id="recommendations-enabled" checked>Enable add-on recommendations</label>
+        <p class="admin-description">Select the products you want to promote. The prices shown come from the website menu.</p>
         <div id="recommendation-options" class="recommendation-options"></div>
-        <button class="admin-action" type="submit">Guardar sugestões</button>
-        <p class="admin-description"><strong>Nota:</strong> nesta entrega, as preferências são guardadas no armazenamento local deste navegador. Para sincronizar entre dispositivos e comerciantes, falta ligar estas definições à API e à base de dados.</p>
+        <button class="admin-action" type="submit">Save Recommendations</button>
+        <p class="admin-description"><strong>Note:</strong>
+           In this version, preferences are saved in this browser's local storage. To sync them across devices and merchants, these settings still need to be connected to the API and database.</p>
       </form>
     </section>
   </main>

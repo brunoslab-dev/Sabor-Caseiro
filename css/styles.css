@@ -959,17 +959,22 @@ h1, h2, h3 {
 
 @media (max-width: 991.98px) {
 
-  .navbar {
+   .navbar{
 
     padding: 12px 0;
 
   }
 
-  .navbar-collapse {
 
-    padding-top: 16px;
+.navbar-collapse {
+  padding-top: 3px;
+}
 
-  }
+.navbar-collapse {
+  padding-top: 1px;
+}
+
+
 
   .split-layout, .contact-layout {
 
@@ -1952,5 +1957,210 @@ h1, h2, h3 {
 
   .navbar-nav .btn {
     margin-top: 4px;
+  }
+}
+
+/* CART PANEL ALIGNMENT FIX */
+.order-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+}
+
+.order-panel {
+  box-sizing: border-box;
+  flex: 0 1 520px;
+  width: min(520px, 100%);
+  max-width: 100%;
+  height: 100%;
+  max-height: 100dvh;
+  margin: 0 0 0 auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media (max-width: 576px) {
+  .order-panel {
+    flex-basis: 100%;
+    width: 100%;
+    padding: 24px 16px;
+  }
+}
+
+/* CART LAYOUT FIX — keep images and text inside the panel */
+#orderOverlay .cart-line {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#orderOverlay .cart-line > img,
+#orderOverlay .cart-line > a img {
+  width: 76px;
+  height: 76px;
+  max-width: 100%;
+  object-fit: cover;
+  flex: none;
+}
+
+#orderOverlay .cart-line > div:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#orderOverlay .cart-line strong,
+#orderOverlay .cart-line p {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+#orderOverlay .cart-line-controls {
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+#orderOverlay .upsell-card {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#orderOverlay .upsell-card img {
+  width: 76px;
+  height: 76px;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+#orderOverlay .upsell-card > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#orderOverlay .upsell-card strong,
+#orderOverlay .upsell-card p {
+  overflow-wrap: anywhere;
+}
+
+
+/* Professional demo checkout confirmation */
+.pending-order-message {
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 32px 26px;
+  text-align: center;
+  background: #fffaf2;
+  border: 1px solid #ead9b9;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(65, 45, 20, 0.08);
+  animation: pendingFadeIn 0.55s ease both;
+}
+
+.pending-order-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #f5e8cc;
+  font-size: 30px;
+  animation: pendingPulse 2s ease-in-out infinite;
+}
+
+.pending-order-message h3 {
+  margin: 0 0 14px;
+  color: #302319;
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+.pending-order-message p {
+  margin: 10px 0;
+  color: #6f6255;
+  line-height: 1.65;
+}
+
+.pending-order-message p strong {
+  color: #302319;
+}
+
+.pending-order-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 11px 16px;
+  border-radius: 30px;
+  background: #f5e8cc;
+  color: #78551b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pending-order-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #d8bd85;
+  border-top-color: #a97724;
+  border-radius: 50%;
+  animation: pendingSpin 0.8s linear infinite;
+}
+
+.pending-order-message small {
+  display: block;
+  margin-top: 12px;
+  color: #887c6e;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@keyframes pendingFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pendingPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes pendingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .pending-order-message {
+    margin: 16px auto;
+    padding: 25px 18px;
+  }
+
+  .pending-order-message h3 {
+    font-size: 22px;
   }
 }
